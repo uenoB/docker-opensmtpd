@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 debian:12 AS build
+FROM debian:12 AS build
 RUN apt-get update
 RUN apt-get install -y libc6-dev gcc make
 RUN apt-get install -y wget libssl-dev libevent-dev libz-dev
@@ -20,7 +20,7 @@ RUN sed -i -e 's,/etc/mail/,/usr/local/etc/,' /usr/local/etc/smtpd.conf
 RUN sed -i -e 's,localhost,127.0.0.1,' /usr/local/etc/smtpd.conf
 RUN touch /usr/local/etc/aliases
 
-FROM --platform=linux/amd64 gcr.io/distroless/cc-debian12
+FROM gcr.io/distroless/cc-debian12
 COPY --from=build \
   /lib/x86_64-linux-gnu/libcrypt.so.1 \
   /lib/x86_64-linux-gnu/libz.so.1 \
