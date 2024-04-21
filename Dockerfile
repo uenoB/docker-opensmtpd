@@ -20,7 +20,7 @@ RUN sed -i -e 's,/etc/mail/,/usr/local/etc/,' /usr/local/etc/smtpd.conf
 RUN sed -i -e 's,localhost,127.0.0.1,' /usr/local/etc/smtpd.conf
 RUN touch /usr/local/etc/aliases
 
-FROM gcr.io/distroless/cc-debian12
+FROM gcr.io/distroless/base-debian12
 COPY --from=build \
   /lib/x86_64-linux-gnu/libcrypt.so.1 \
   /lib/x86_64-linux-gnu/libz.so.1 \
