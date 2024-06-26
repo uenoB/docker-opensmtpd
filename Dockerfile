@@ -2,6 +2,7 @@ FROM debian:12 AS build
 RUN apt-get update
 RUN apt-get install -y libc6-dev gcc make
 RUN apt-get install -y wget libssl-dev libevent-dev libz-dev
+RUN groupmod -n nobody nogroup
 WORKDIR /root
 ARG VERSION
 COPY opensmtpd-$VERSION.tar.gz /root
@@ -15,7 +16,6 @@ RUN cd opensmtpd-$VERSION && \
       --with-group-queue=nobody
 RUN cd opensmtpd-$VERSION && make
 RUN cd opensmtpd-$VERSION && make install
-RUN chgrp 65534 /usr/local/sbin/smtpctl
 RUN sed -i -e 's,/etc/mail/,/usr/local/etc/,' /usr/local/etc/smtpd.conf
 RUN sed -i -e 's,localhost,127.0.0.1,' /usr/local/etc/smtpd.conf
 RUN touch /usr/local/etc/aliases
