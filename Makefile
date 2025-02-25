@@ -1,5 +1,5 @@
-VERSION=7.5.0p0
-SHA256=84f5c1393c0c1becc72ceea971e0abd7075b2ca7e4e1f8909b83edfd8de0c39c
+VERSION=7.6.0p1
+SHA256=b27c806982a6653a2637f810ae7a45372b9a7ff99350ee1003746503ff0e4a97
 NAME=ghcr.io/uenob/opensmtpd:$(VERSION)
 
 opensmtpd-$(VERSION).tar: Dockerfile opensmtpd-$(VERSION).tar.gz
